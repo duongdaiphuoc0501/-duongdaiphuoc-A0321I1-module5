@@ -1,0 +1,24 @@
+<h1>Danh sách khách hàng</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Tên khách hàng</th>
+      <th>Ngày sinh</th>
+      <th>Giới tính</th>
+      <th>Chứng minh nhân dân</th>
+      <th>Số điện thoại</th>
+      <th>Email</th>
+      <th>Địa chỉ</th>
+      <th>Sửa</th>
+      <th>Xóa</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of customerList">
+    <td>{{item.customerId}}</td>
+    <td>{{item.customerName}}</td>
+  </tr>
+  </tbody>
+</table>

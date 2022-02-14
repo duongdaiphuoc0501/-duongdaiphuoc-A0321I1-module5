@@ -1,0 +1,8 @@
+<h2>Đổi màu</h2>
+<div>
+  <label>Chọn màu:</label>
+  <input [value]="background" type="color" (change)="onChange($event.target.value)">
+</div>
+
+<p>Đầu ra:</p>
+<div class="color-preview" [style.background]="background"></div>
