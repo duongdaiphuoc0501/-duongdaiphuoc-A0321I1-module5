@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 // tslint:disable-next-line:import-spacing
 import  {Customer} from '../../model/Customer';
+import {KhachHangService} from "../../service/khach-hang.service";
+import {ActivatedRoute, Route, Router} from "@angular/router";
+import {Customer_Type} from "../../model/Customer_Type";
+import {LoaiKhachService} from "../../service/loai-khach.service";
 
 @Component({
   selector: 'app-danh-sach-khach-hang',
@@ -8,19 +12,39 @@ import  {Customer} from '../../model/Customer';
   styleUrls: ['./danh-sach-khach-hang.component.css']
 })
 export class DanhSachKhachHangComponent implements OnInit {
-  constructor() { }
 
-  isDisplay = true;
+  customer: Customer | undefined;
+  customers: Customer[] | undefined;
 
-  customerList: Customer[] = [
-    // tslint:disable-next-line:max-line-length
-    {customerId: 1, customerName: 'Nguyen Van A', customerBirthday: '01/01/2001', customerGender: 0, customerIdCard: '1029481721', customerPhone: '0914726111', customerEmail: 'a@gmail.com', customerAddress: 'Quang Nam'},
-  ];
+  public page;
+  public searchValue!:string;
+  public name!:string;
+  public id!:number;
+
+  constructor(private _customerService: KhachHangService,
+              private _router: Router,
+              private _activeRouter: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this._customerService.getAllCustomer().subscribe(
+      data => {
+        this.customers = data;
+        console.log(data);
+      }, error => {
+        console.log("Lấy dữ liệu thất bại!")
+      }
+    )
   }
 
-  onToggle(){
-    this.isDisplay = !this.isDisplay;
+  deleteCus(id:number){
+    this._customerService.delete(id).subscribe(data=>{
+      this.ngOnInit();
+    })
+  }
+  getCustomerName(id: number) {
+    this._customerService.findById(id).subscribe(data=>{
+      this.name=data.name;
+      this.id=data.id;
+    });
   }
 }

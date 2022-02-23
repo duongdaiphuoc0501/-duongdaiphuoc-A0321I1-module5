@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Create customer</title>
+  <link rel="stylesheet" href="/assert/bootstrap413/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+  <style>
+    .error{
+      color: red;
+    }
+  </style>
+</head>
+<body>
+<h1>Tạo mới khách hàng</h1>
+<p>
+  <a [routerLink]="['/customer']">Danh sách khách hàng</a>
+</p>
+
+<form [formGroup]="rfCustomer">
+  <div class="form-group">
+    <label>Tên khách hàng</label>
+    <input type="text" class="form-control" name="txtName" formControlName="customerName">
+  </div>
+  <div class="form-group">
+    <label>Ngày Sinh</label>
+    <input class="form-control" type="date" formControlName="customerBirthday">
+  </div>
+  <div class="form-group">
+    <label>Giới tính</label>
+    <input type="number" name="txtGender" formControlName="gender">
+  </div>
+  <div class="form-group">
+    <label>Chứng minh nhân dân</label>
+    <input type="text" class="form-control" name="txtIDCard" formControlName="customerIdCard">
+  </div>
+  <div class="form-group">
+    <label>Số điện thoại</label>
+    <input type="text" class="form-control" name="txtPhone" formControlName="customerPhone">
+  </div>
+  <div class="form-group">
+    <label>Địa chỉ</label>
+    <input type="text" class="form-control" name="txtAddress" formControlName="customerAddress">
+  </div>
+  <div class="form-group">
+    <label>Loại Khách Hàng</label>
+    <select formGroupName="customer_type" (change)="changeCustomerType($event.target.value)">
+      <option value="" selected>Vui lòng chọn</option>
+      <option [value]="type | json" *ngFor="let type of customerTypes">{{type.name}}</option>
+      <input hidden formControlName="id" [(ngModel)]="id">
+      <input hidden formControlName="name" [(ngModel)]="name">
+    </select>
+  </div>
+  <button class="btn btn-primary" [disabled]="rfCustomer.invalid" (click)="createCustomer()">Tạo mới</button>
+</form>
+</body>
+</html>

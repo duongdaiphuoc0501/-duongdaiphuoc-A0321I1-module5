@@ -1,10 +1,12 @@
+import {Customer_Type} from "./Customer_Type";
+
 export interface Customer{
-  customerId: number;
+  id: number;
   customerName: string;
   customerBirthday: string;
-  customerGender: number;
+  gender: number;
   customerIdCard: string;
   customerPhone: string;
-  customerEmail: string;
   customerAddress?: string;
+  customer_type: Customer_Type;
 }

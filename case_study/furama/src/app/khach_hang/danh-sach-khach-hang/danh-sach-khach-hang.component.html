@@ -1,24 +1,70 @@
 <h1>Danh sách khách hàng</h1>
-
+<div>
+  <input type="text">
+  <button class="btn btn-outline-success">Tìm kiếm</button>
+</div>
+<br>
+<a class="btn btn-success" [routerLink]="'/customer/create'">Thêm mới</a>
 <table class="table">
   <thead>
     <tr>
-      <th></th>
       <th>Tên khách hàng</th>
       <th>Ngày sinh</th>
       <th>Giới tính</th>
       <th>Chứng minh nhân dân</th>
       <th>Số điện thoại</th>
-      <th>Email</th>
       <th>Địa chỉ</th>
+      <th>Loại</th>
       <th>Sửa</th>
       <th>Xóa</th>
     </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let item of customerList">
-    <td>{{item.customerId}}</td>
+  <tr *ngFor="let item of customers | paginate: {itemsPerPage: 2, currentPage: page} ">
     <td>{{item.customerName}}</td>
+    <td>{{item.customerBirthday}}</td>
+    <td [ngSwitch]="item.gender">
+      <span *ngSwitchCase="0">Nữ</span>
+      <span *ngSwitchCase="1">Nam</span>
+      <span *ngSwitchDefault>Khác</span>
+    </td>
+    <td>{{item.customerIdCard}}</td>
+    <td>{{item.customerPhone}}</td>
+    <td>{{item.customerAddress}}</td>
+    <td>{{item.customer_type.name}}</td>
+    <td><button class="btn btn-success">Sửa</button></td>
+    <td>
+      <button  data-bs-toggle="modal" data-bs-target="#idModal" class="btn btn-danger"
+              (click)="getCustomerName(item.id)">Xóa
+      </button>
+    </td>
   </tr>
   </tbody>
 </table>
+
+<div class="modal fade" id="idModal" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Thông Báo!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Bạn có chắc chắn muốn xóa: {{name}} không?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy bỏ</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteCus(id)">Xóa</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<pagination-controls (pageChange)="page = $event"></pagination-controls>
+
+
+
+

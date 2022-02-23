@@ -7,6 +7,12 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponentComponent } from './header-component/header-component.component';
 import { FooterComponentComponent } from './footer-component/footer-component.component';
 import { DanhSachKhachHangComponent } from './khach_hang/danh-sach-khach-hang/danh-sach-khach-hang.component';
+import {HttpClientModule} from "@angular/common/http";
+import {ReactiveFormsModule} from "@angular/forms";
+import {RouterModule} from "@angular/router";
+import { TaoKhachHangComponent } from './khach_hang/tao-khach-hang/tao-khach-hang.component';
+import {NgxPaginationModule} from "ngx-pagination";
+import { SuaKhachHangComponent } from './khach_hang/sua-khach-hang/sua-khach-hang.component';
 
 @NgModule({
   declarations: [
@@ -14,10 +20,16 @@ import { DanhSachKhachHangComponent } from './khach_hang/danh-sach-khach-hang/da
     HomeComponent,
     HeaderComponentComponent,
     FooterComponentComponent,
-    DanhSachKhachHangComponent
+    DanhSachKhachHangComponent,
+    TaoKhachHangComponent,
+    SuaKhachHangComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    NgxPaginationModule,
+    ReactiveFormsModule,
+    RouterModule,
     AppRoutingModule
   ],
   providers: [],
