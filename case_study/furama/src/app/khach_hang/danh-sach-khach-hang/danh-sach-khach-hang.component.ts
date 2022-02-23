@@ -38,7 +38,9 @@ export class DanhSachKhachHangComponent implements OnInit {
 
   deleteCus(id:number){
     this._customerService.delete(id).subscribe(data=>{
+      this._router.navigateByUrl('customer');
       this.ngOnInit();
+      this.page=1;
     })
   }
   getCustomerName(id: number) {

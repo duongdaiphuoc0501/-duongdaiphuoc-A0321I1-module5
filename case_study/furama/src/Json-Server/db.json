@@ -35,32 +35,6 @@
         "id": 2,
         "name": "VIP"
       }
-    },
-    {
-      "id": 4,
-      "customerName": "Nguyen Van D",
-      "customerBirthday": "27/03/1997",
-      "gender": 1,
-      "customerIdCard": "2018274551",
-      "customerPhone": "0128615289",
-      "customerAddress": "Quang Nam",
-      "customer_type": {
-        "id": 2,
-        "name": "VIP"
-      }
-    },
-    {
-      "customerName": "He Vang Nha",
-      "customerBirthday": "1999-01-01",
-      "gender": 1,
-      "customerIdCard": "1082645154",
-      "customerPhone": "0914162644",
-      "customerAddress": "Da Nang",
-      "customer_type": {
-        "id": 2,
-        "name": "VIP"
-      },
-      "id": 5
     }
   ]
 }
