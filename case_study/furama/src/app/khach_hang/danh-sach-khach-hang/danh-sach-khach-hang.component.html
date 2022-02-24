@@ -1,8 +1,9 @@
 <h1>Danh sách khách hàng</h1>
-<div>
-  <input type="text">
-  <button class="btn btn-outline-success">Tìm kiếm</button>
-</div>
+<form [formGroup]="formSearch" (ngSubmit)="search()">
+  Tên khách hàng <input formControlName="customerName">
+  Loại khách <input formControlName="customer_type">
+  <button class="btn btn-success">Tìm kiếm</button>
+</form>
 <br>
 <a class="btn btn-success" [routerLink]="'/customer/create'">Thêm mới</a>
 <table class="table">
@@ -32,7 +33,7 @@
     <td>{{item.customerPhone}}</td>
     <td>{{item.customerAddress}}</td>
     <td>{{item.customer_type.name}}</td>
-    <td><button class="btn btn-success">Sửa</button></td>
+    <td><button class="btn btn-success" [routerLink]="['/customer/edit/'+item.id]">Sửa</button></td>
     <td>
       <button  data-bs-toggle="modal" data-bs-target="#idModal" class="btn btn-danger"
               (click)="getCustomerName(item.id)">Xóa

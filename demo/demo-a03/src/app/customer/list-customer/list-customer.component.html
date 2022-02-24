@@ -1,0 +1,34 @@
+<form [formGroup]="formSearch" (ngSubmit)="search()">
+  Name <input formControlName="name">
+  Email <input formControlName="email">
+  Customer Type <input formControlName="customerType">
+  <button class="btn btn-success">Search</button>
+</form>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Birthday</th>
+    <th>Email</th>
+    <th>Customer type</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let cus of customerList | paginate: { itemsPerPage: 2, currentPage: p }">
+    <td>{{cus.id}}</td>
+    <td>{{cus.name}}</td>
+    <td>{{cus.birthday | date : 'dd/MM/yyyy'}}</td>
+    <td>{{cus.email}}</td>
+    <td>{{cus.customerType.typeName}}</td>
+    <td>
+      <button mat-button (click)="openDialogDelete(cus.id ,cus.name)" class="btn btn-danger">Delete
+      </button>
+      <a class="btn btn-success" [routerLink]="['edit', cus.id]">edit</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>

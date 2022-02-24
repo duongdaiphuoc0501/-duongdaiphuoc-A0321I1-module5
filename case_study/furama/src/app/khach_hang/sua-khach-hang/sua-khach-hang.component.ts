@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Customer} from "../../model/Customer";
 import {KhachHangService} from "../../service/khach-hang.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {LoaiKhachService} from "../../service/loai-khach.service";
+import {Customer_Type} from "../../model/Customer_Type";
 
 @Component({
   selector: 'app-sua-khach-hang',
@@ -10,26 +12,54 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./sua-khach-hang.component.css']
 })
 export class SuaKhachHangComponent implements OnInit {
-  formEdit: FormGroup;
-  customer: Customer;
+  public formEditCustomer: FormGroup
+  public customerTypes: Customer_Type[];
 
-  constructor(private  _formBuilder: FormBuilder,
-              private _customerService: KhachHangService,
-              private _activeRouter: ActivatedRoute) { }
+  public customerOfId;
 
-  ngOnInit(): void {
-    this.createForm();
+  constructor(public _formBuilder: FormBuilder,
+              public _customerService: KhachHangService,
+              private _customerTypeService: LoaiKhachService,
+              public _router: Router,
+              public _activatedRoute: ActivatedRoute) {
   }
 
-  createForm(){
-    this.formEdit = this._formBuilder.group({
+  ngOnInit(): void {
+    this._customerTypeService.getAllCustomerType().subscribe(data => {
+      this.customerTypes = data;
+      console.log(data);
+    }, error => {
+      console.log('Failed to get list customer type!');
+    });
+
+    this.formEditCustomer = this._formBuilder.group({
       customerName: ['', [Validators.required]],
       customerBirthday: ['', [Validators.required]],
       gender: ['', [Validators.required]],
       customerIdCard: ['', [Validators.required]],
       customerPhone: ['', [Validators.required]],
       customerAddress: ['', [Validators.required]],
-      customer_type: []
-    });
+      customer_type: ['',[Validators.required]]
+    })
+
+    this._activatedRoute.params.subscribe(data => {
+      this.customerOfId = data.id;
+      this._customerService.findById(this.customerOfId).subscribe(data => {
+        console.log(data);
+        this.formEditCustomer.patchValue(data);
+      })
+    })
+  }
+
+  editCustomer() {
+    this._customerService.edit(this.formEditCustomer.value, this.customerOfId).subscribe(data => {
+      this._router.navigateByUrl('customer');
+      console.log(this.formEditCustomer.value);
+    })
+  }
+
+
+  compareFn(c1: any, c2: any): boolean {
+    return c1 && c2 ? c1.id === c2.id : c1 === c2;
   }
 }

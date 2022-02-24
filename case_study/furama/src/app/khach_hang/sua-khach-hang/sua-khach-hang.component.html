@@ -1,1 +1,57 @@
-<p>sua-khach-hang works!</p>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Create customer</title>
+  <link rel="stylesheet" href="/assert/bootstrap413/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+  <style>
+    .error{
+      color: red;
+    }
+  </style>
+</head>
+<body>
+<h1>Chỉnh sửa thông tin khách hàng khách hàng</h1>
+<p>
+  <a [routerLink]="['/customer']">Danh sách khách hàng</a>
+</p>
+
+<form [formGroup]="formEditCustomer">
+  <div class="form-group">
+    <label>Tên khách hàng</label>
+    <input type="text" class="form-control" name="txtName" formControlName="customerName">
+  </div>
+  <div class="form-group">
+    <label>Ngày Sinh</label>
+    <input class="form-control" type="date" formControlName="customerBirthday">
+  </div>
+  <div class="form-group">
+    <label>Giới tính</label>
+    <input type="number" name="txtGender" formControlName="gender"> * 0 là nữ, 1 là nam, còn lại là giới tính khác
+  </div>
+  <div class="form-group">
+    <label>Chứng minh nhân dân</label>
+    <input type="text" class="form-control" name="txtIDCard" formControlName="customerIdCard">
+  </div>
+  <div class="form-group">
+    <label>Số điện thoại</label>
+    <input type="text" class="form-control" name="txtPhone" formControlName="customerPhone">
+  </div>
+  <div class="form-group">
+    <label>Địa chỉ</label>
+    <input type="text" class="form-control" name="txtAddress" formControlName="customerAddress">
+  </div>
+  <div class="form-group">
+    <label>Loại Khách Hàng</label>
+    <select class="form-control" formControlName="customer_type" [compareWith]="compareFn">
+      <ng-container *ngFor="let customerType of customerTypes">
+        <option [ngValue]="customerType">{{customerType.name}}</option>
+      </ng-container>
+    </select>
+  </div>
+  <button class="btn btn-primary" [disabled]="formEditCustomer.invalid" (click)="editCustomer()">Sửa thông tin</button>
+</form>
+</body>
+</html>

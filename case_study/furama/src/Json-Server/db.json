@@ -11,30 +11,43 @@
   ],
   "customer": [
     {
-      "id": 2,
       "customerName": "Nguyen Thi B",
-      "customerBirthday": "10/02/2001",
-      "gender": 0,
+      "customerBirthday": "2022-02-13",
+      "gender": 1,
       "customerIdCard": "1039481777",
       "customerPhone": "0905124186",
       "customerAddress": "Da Nang",
       "customer_type": {
         "id": 1,
         "name": "NORMAL"
-      }
+      },
+      "id": 2
     },
     {
-      "id": 3,
-      "customerName": "Nguyen Thi C",
-      "customerBirthday": "11/10/1999",
-      "gender": 0,
-      "customerIdCard": "3017215431",
-      "customerPhone": "0902816269",
+      "customerName": "He Vang Nha",
+      "customerBirthday": "1999-01-01",
+      "gender": 1,
+      "customerIdCard": "1082645154",
+      "customerPhone": "0914162644",
       "customerAddress": "Da Nang",
       "customer_type": {
-        "id": 2,
-        "name": "VIP"
-      }
+        "id": 1,
+        "name": "NORMAL"
+      },
+      "id": 4
+    },
+    {
+      "customerName": "Nguyen Van A",
+      "customerBirthday": "1997-12-10",
+      "gender": 1,
+      "customerIdCard": "1027356161",
+      "customerPhone": "0916264515",
+      "customerAddress": "Da Nang",
+      "customer_type": {
+        "id": 1,
+        "name": "NORMAL"
+      },
+      "id": 5
     }
   ]
 }

@@ -13,6 +13,7 @@ import {RouterModule} from "@angular/router";
 import { TaoKhachHangComponent } from './khach_hang/tao-khach-hang/tao-khach-hang.component';
 import {NgxPaginationModule} from "ngx-pagination";
 import { SuaKhachHangComponent } from './khach_hang/sua-khach-hang/sua-khach-hang.component';
+import {CommonModule} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { SuaKhachHangComponent } from './khach_hang/sua-khach-hang/sua-khach-han
     NgxPaginationModule,
     ReactiveFormsModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

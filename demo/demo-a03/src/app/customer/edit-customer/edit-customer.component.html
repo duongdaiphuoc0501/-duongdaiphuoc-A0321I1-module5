@@ -1,0 +1,27 @@
+<form [formGroup]="formEdit" (ngSubmit)="onSubmit()">
+  <div class="mb-3">
+    <label class="form-label">Id</label>
+    <input type="text" class="form-control"  formControlName="id" readonly>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Name</label>
+    <input type="text" class="form-control"  formControlName="name">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Birthday</label>
+    <input type="text" class="form-control"  formControlName="birthday">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Email</label>
+    <input type="text" class="form-control"  formControlName="email">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Customer type</label>
+    <select [compareWith]="compareFn" class="form-control" formControlName="customerType">
+      <ng-container *ngFor="let customerType of listCustomerType">
+        <option [ngValue]="customerType">{{customerType.typeName}}</option>
+      </ng-container>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

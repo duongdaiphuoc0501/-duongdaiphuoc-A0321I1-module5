@@ -23,8 +23,8 @@ export class KhachHangService {
     return this._httpClient.get(this.API_URL + "/" + id);
   }
 
-  search(search: string): Observable<any[]> {
-    return this._httpClient.get<any[]>(this.API_URL + '?name_like=' + search);
+  search4Way(obj: any): Observable<any> {
+    return this._httpClient.get<any>(this.API_URL + '?customerName_like=' + obj.customerName + '&customer_type.name_like=' + obj.customer_type);
   }
 
   delete(id: number): Observable<any> {
